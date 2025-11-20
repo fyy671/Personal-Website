@@ -1,0 +1,57 @@
+.Title {
+    text-align: center;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    margin: auto;
+}
+
+.full-page-section {
+    width: 100%;
+    height: 100vh;
+    /* 关键：高度等于视口高度 */
+    display: flex;
+    flex-direction: column;
+    /* 垂直排列其子元素 */
+    /* 使用 Flexbox 居中内容 */
+    justify-content: center;
+    /* 水平居中 */
+    align-items: center;
+    /* 垂直居中 */
+    scroll-snap-align: start;
+    /* 这是关键属性，用于滚动捕捉 */
+    /* 以下为添加背景图的关键属性 */
+    /* 背景图路径 */
+    background-image: url("../assets/bj1.png");
+    /* 半透明白色背景 */
+    background-color: rgba(255, 255, 255, 0.3);
+    /* 混合模式（可调整为其他模式） */
+    background-blend-mode: overlay;
+    /* 图片完全覆盖容器（不变形，可能裁剪边缘） */
+    background-size: cover;
+    /* 图片在容器内居中 */
+    background-position: center;
+    /* 图片不重复平铺 */
+    background-repeat: no-repeat;
+}
+.lastPage {
+    width: 100%;
+    height: 100vh;
+    /* 关键：高度等于视口高度 */
+    display: flex;
+    flex-direction: column;
+    /* 垂直排列其子元素 */
+    /* 这是关键属性，用于滚动捕捉 */
+    /* 以下为添加背景图的关键属性 */
+    /* 背景图路径 */
+    background-image: url("../assets/bj1.png");
+    /* 半透明白色背景 */
+    background-color: rgba(255, 255, 255, 0.3);
+    /* 混合模式（可调整为其他模式） */
+    background-blend-mode: overlay;
+    /* 图片完全覆盖容器（不变形，可能裁剪边缘） */
+    background-size: cover;
+    /* 图片在容器内居中 */
+    background-position: center;
+    /* 图片不重复平铺 */
+    background-repeat: no-repeat;
+}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>个人作品集展示</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <style type="text/css">
+        /* 容器修改：自适应浏览器宽度 */
+        #mask {
+            margin: 20px auto;
+            /* 上下留边距，左右自动居中 */
+            width: 90%;
+            /* 占浏览器宽度的90%（可调整） */
+            max-width: 1200px;
+            /* 最大宽度限制（避免太宽失真） */
+            height: auto;
+            /* 高度自动跟随图片比例 */
+            position: relative;
+            /* 让箭头基于容器定位（关键） */
+            overflow: hidden;
+            /* 隐藏超出容器的部分 */
+        }
+
+        /* 图片自适应核心样式 */
+        #mask img {
+            width: 100%;
+            /* 图片宽度=容器宽度 */
+            height: auto;
+            /* 高度按比例自动计算 */
+            object-fit: cover;
+            /* 可选：图片比例与容器不一致时，裁剪填充（不畸变） */
+            cursor: pointer;
+        }
+
+        /* 左右箭头样式调整：基于容器定位 */
+        .left,
+        .right {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            /* 绝对定位（基于 #mask） */
+            top: 50%;
+            /* 垂直居中 */
+            transform: translateY(-50%);
+            /* 精准垂直居中 */
+            z-index: 10;
+            /* 确保箭头在图片上方 */
+            /* 可选：添加箭头背景/图标，方便点击 */
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .left {
+            left: 20px;
+            /* 距离容器左侧20px */
+        }
+
+        .right {
+            right: 20px;
+            /* 距离容器右侧20px（删除原left属性） */
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="Title">游戏demo展示</h1>
+    <div id="carousel-container" class="full-page-section">
+        <!-- 左侧按钮 -->
+        <button class="carousel-btn left" @click="prev">←</button>
+        <!-- 图片容器 -->
+        <div id="mask">
+            <img :src="imgArr[index]" id="img" @click="gotoNewPage()">
+        </div>
+        <!-- 右侧按钮 -->
+        <button class="carousel-btn right" @click="next">→</button>
+            <p>点击可查看对应游戏介绍</p>
+    </div>
+    <script type="text/javascript">
+        var app1 = new Vue({
+            el: '#carousel-container',
+            data: {
+                imgArr: [
+                    "../assets/1.png",
+                    "../assets/2.png",
+                    "../assets/3.png",
+                    "../assets/4.png",
+                    "../assets/5.png",
+                    "../assets/6.png",
+                    "../assets/7.png",
+                ],
+                index: 0,
+                timer: null
+            },
+            // 页面加载完成后，自动启动轮播
+            mounted() {
+                this.startLoop();
+            },
+            methods: {
+                // 下一张图片
+                next() {
+                    this.index++;
+                    if (this.index === this.imgArr.length) {
+                        this.index = 0;
+                    }
+                },
+                // 上一张图片
+                prev() {
+                    this.index--;
+                    if (this.index < 0) {
+                        this.index = this.imgArr.length - 1;
+                    }
+                },
+                startLoop() {
+                    // 避免重复启动定时器
+                    if (this.timer) clearInterval(this.timer);
+                    this.timer = setInterval(() => {
+                        this.next();
+                    }, 2000); // 2秒切换一次
+                },
+                gotoNewPage: function () {
+                    index = this.index;
+                    const targetPage = `../components/${index + 1}.html`;
+                    window.location.href = targetPage;
+                }
+            },
+            // 页面销毁时清除定时器（防止内存泄漏）
+            beforeDestroy() {
+                clearInterval(this.timer);
+            }
+        })
+    </script>
+    </div>
+
+    <h1 class="Title">前端网页设计展示</h1>
+    <div class="full-page-section">
+        <p style="text-align: center">
+            <img src="../assets/qd1.png" width="80%" height=auto alt="前端网页设计展示" onclick="gotTocsPage()">
+        </p>
+        <p>点击前往对应网页</p>
+        <script>
+            function gotTocsPage() {
+                window.open("https://iotest-beige.vercel.app/");
+            }
+        </script>
+    </div>
+
+    <h1 class="Title">个人简历</h1>
+    <div class="full-page-section">
+        <input type="text" placeholder="请输入密码" id="password">
+        <script>
+            function checkPassword() {
+                // 1. 先获取密码输入框的 DOM 元素，并存储在变量中
+                const passwordInput = document.getElementById("password");
+                // 2. 再从这个元素中获取输入的密码值
+                const password = passwordInput.value;
+                if (password === "1108") {
+                    alert("密码正确，开始下载...");
+                    // 1. 创建一个 <a> 标签
+                    const link = document.createElement('a');
+                    // 2. 设置文件的下载地址和文件名
+                    link.href = '../assets/jl.pdf'; // 你的文件路径
+                    link.download = '个人简历.pdf'; // 下载时显示的文件名 (可选)
+                    // 3. 将 <a> 标签添加到页面中（某些浏览器需要这一步）
+                    document.body.appendChild(link);
+                    // 4. 触发 <a> 标签的点击事件，开始下载
+                    link.click();
+                    // 5. 下载开始后，从页面中移除这个 <a> 标签
+                    document.body.removeChild(link);
+                    passwordInput.focus();
+
+                } else {
+                    alert("密码错误");
+                    passwordInput.value = "";
+                    passwordInput.focus();
+                }
+            }
+        </script>
+        <br>
+        <button onclick="checkPassword()">点击下载</button>
+    </div>
+
+    <h1 class="Title">杂项经历</h1>
+    <div class="lastPage">
+        <p style="font-size: 25px;">
+            live2d作品展示
+        </p>
+        <video src="../assets/live2d.mp4" width="80%" height="auto" autoplay loop muted playsinline style="display: block; margin: 0 auto;"  >
+        </video>
+          <p style="font-size: 25px;">
+            unity作品试玩
+        </p>
+        <p><a href="https://play.unity.com/en/games/af87227f-2bb7-46e8-8e18-c2e0e1bfd170/migong" target="_blank">迷宫游戏网址</a>&nbsp;&nbsp;点击前往</p>
+    </div>
+</body>
+
+</html>
