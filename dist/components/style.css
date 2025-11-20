@@ -1,0 +1,13 @@
+.Video {
+    width: 90%;
+    height: auto;
+    margin: 10px auto;
+    display: block;
+}
+
+.Text {
+    width: 100%;
+    height: auto;
+    margin: 10px auto;
+    display: block;
+}
