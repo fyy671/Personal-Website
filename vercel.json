@@ -1,8 +1,12 @@
 {
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/",
       "dest": "/components/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/components/$1"
     }
   ]
 }
