@@ -1,5 +1,8 @@
 {
-  "redirects": [
-    { "source": "/", "destination": "/components/index.html", "permanent": false }
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/components/index.html"
+    }
   ]
 }
