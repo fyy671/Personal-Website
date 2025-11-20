@@ -132,9 +132,9 @@ export default {
     }
   },
   // 页面销毁时清除定时器
-  beforeDestroy() {
-    clearInterval(this.timer);
-  }
+beforeUnmount() {
+  clearInterval(this.timer);
+}
 }
 </script>
 
