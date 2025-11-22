@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="../src/components/index.css">
     <style type="text/css">
         /* 容器修改：自适应浏览器宽度 */
         #mask {
@@ -91,13 +91,13 @@
             el: '#carousel-container',
             data: {
                 imgArr: [
-                    "../assets/1.png",
-                    "../assets/2.png",
-                    "../assets/3.png",
-                    "../assets/4.png",
-                    "../assets/5.png",
-                    "../assets/6.png",
-                    "../assets/7.png",
+                    "assets/1.png",
+                    "assets/2.png",
+                    "assets/3.png",
+                    "assets/4.png",
+                    "assets/5.png",
+                    "assets/6.png",
+                    "assets/7.png",
                 ],
                 index: 0,
                 timer: null
@@ -130,7 +130,7 @@
                 },
                 gotoNewPage: function () {
                     index = this.index;
-                    const targetPage = `../components/${index + 1}.html`;
+                    const targetPage = `pages/${index + 1}.html`;
                     window.location.href = targetPage;
                 }
             },
@@ -145,7 +145,7 @@
     <div class="full-page-section">
         <h1>前端网页设计展示</h1>
         <p style="text-align: center">
-            <img src="../assets/qd1.png" width="80%" height=auto alt="前端网页设计展示" onclick="gotTocsPage()">
+            <img src="assets/qd1.png" width="80%" height=auto alt="前端网页设计展示" onclick="gotTocsPage()">
         </p>
         <p>点击前往对应网页</p>
         <script>
@@ -160,7 +160,7 @@
         <p style="font-size: 25px;">
             live2d作品展示
         </p>
-        <video src="../assets/live2d.mp4" width="80%" height="auto" autoplay loop muted playsinline
+        <video src="assets/live2d.mp4" width="80%" height="auto" autoplay loop muted playsinline
             style="display: block; margin: 0 auto;">
         </video>
         <p style="font-size: 25px;">
